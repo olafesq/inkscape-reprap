@@ -1,4 +1,4 @@
-MakerBot Unicorn G-Code Output for Inkscape
+MakerBot RepRap G-Code Output for Inkscape
 ===========================================
 
 This is an Inkscape extension that allows you to save your Inkscape drawings as
