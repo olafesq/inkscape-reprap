@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
-  <_name>MakerBot Unicorn G-Code Output</_name>
-  <id>com.makerbot.unicorn.gcode</id>
+  <_name>RepRap Plotter G-Code Output</_name>
+  <id>com.reprap.gcode</id>
   <dependency type="extension">org.inkscape.output.svg.inkscape</dependency>
-  <dependency type="executable" location="extensions">unicorn.py</dependency>
+  <dependency type="executable" location="extensions">reprap.py</dependency>
   <dependency type="executable" location="extensions">inkex.py</dependency>
   <param name="tab" type="notebook">
     <page name="plotter_setup" _gui-text="Setup">
-      <param name="pen-up-angle" type="float" min="0.0" max="180.0" _gui-text="Pen Up Angle">50</param>
-      <param name="pen-down-angle" type="float" min="0.0" max="180.0" _gui-text="Pen Down Angle">30</param>
+      <param name="pen-up-height" type="float" min="0.0" max="180.0" _gui-text="Pen Up Height">10</param>
+      <param name="flat" type="float" precision="2" min="0.01" max="100.00" _gui-text="Bezier curve approximation tolerance">0.15</param>
       <param name="start-delay" type="float" min="0.0" max="1000.0" _gui-text="Delay after pen-down command before movement in milliseconds.">150.0</param>
       <param name="stop-delay" type="float" min="0.0" max="1000.0" _gui-text="Delay after pen-up command before movement in milliseconds.">150.0</param>
       <param name="xy-feedrate" type="float" min="100.0" max="5000.0" _gui-text="XY axes feedrate in mm/min.">3500.0</param>
       <param name="z-feedrate" type="float" min="0.0" max="1000.0" _gui-text="Z-axis feedrate in mm/min.">150.0</param>
-      <param name="z-height" type="float" min="0.0" max="110.0" _gui-text="Z-axis print height in mm.">0.0</param>
-      <param name="finished-height" type="float" min="0.0" max="110.0" _gui-text="Z-axis height after printing in mm.">0.0</param>
+      <param name="z-height" type="float" min="0.0" max="200.0" _gui-text="Z-axis print height in mm.">0.0</param>
+      <param name="finished-height" type="float" min="0.0" max="200.0" _gui-text="Z-axis height after printing in mm.">100.0</param>
     </page>
     <page name="pen_reg" _gui-text="Registration">
       <_param name="reg_help" type="description" xml:space="preserve">Pen Registration Check
@@ -44,23 +44,29 @@ Note: Double-check the orientation of your axes when changing these values!</_pa
       <param name="pause-on-layer-change" type="boolean" _gui-text="Pause on layer changes?">false</param>
     </page>
     <page name="help" _gui-text="Help">
-      <_param name="ext_help" type="description" xml:space="preserve">MakerBot Unicorn G-Code Output.
+      <_param name="ext_help" type="description" xml:space="preserve">RepRap Plotter G-Code Output.
 
 - All text must be converted to paths.
 - Curves are approximated with line segments.
 
-More Info: http://github.com/martymcguire/inkscape-unicorn/</_param>
+Credits
+=======
+The script is based on Makerbot Unicorn G-Code Output so credit goes to:
+* Marty McGuire pulled this all together into an Inkscape extension.
+* Scribbles (https://github.com/makerbot/Makerbot/tree/master/Unicorn/Scribbles%20Scripts) is the original DXF-to-Unicorn Python script.
+* The Egg-Bot Driver for Inkscape (http://code.google.com/p/eggbotcode/) provided inspiration and good examples for working with Inkscape's extensions API.
+</_param>
     </page>
   </param>
 
   <output>
     <extension>.gcode</extension>
     <mimetype>application/x-gcode</mimetype>
-    <_filetypename>MakerBot Unicorn G-Code (*.gcode)</_filetypename>
-    <_filetypetooltip>Toolpath for the MakerBot Unicorn Pen Plotter</_filetypetooltip>
+    <_filetypename>RepRap Plotter G-Code (*.gcode)</_filetypename>
+    <_filetypetooltip>Toolpath for the Reprap Pen Plotter</_filetypetooltip>
     <dataloss>true</dataloss>
   </output>
   <script>
-    <command reldir="extensions" interpreter="python">unicorn.py</command>
+    <command reldir="extensions" interpreter="python">reprap.py</command>
   </script>
 </inkscape-extension>
