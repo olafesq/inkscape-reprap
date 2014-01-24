@@ -20,20 +20,17 @@ import sys,os
 import inkex
 from math import *
 import getopt
-from unicorn.context import GCodeContext
-from unicorn.svg_parser import SvgParser
+from reprap.context import GCodeContext
+from reprap.svg_parser import SvgParser
 
 class MyEffect(inkex.Effect):
   def __init__(self):
     inkex.Effect.__init__(self)
-    self.OptionParser.add_option("--pen-up-angle",
+    self.OptionParser.add_option("--pen-up-height",
                       action="store", type="float",
-                      dest="pen_up_angle", default="50.0",
-                      help="Pen Up Angle")
-    self.OptionParser.add_option("--pen-down-angle",
-                      action="store", type="float",
-                      dest="pen_down_angle", default="30.0",
-                      help="Pen Down Angle")
+                      dest="pen_up_height", default="10.0",
+                      help="Pen Up height")
+  
     self.OptionParser.add_option("--start-delay",
                       action="store", type="float",
                       dest="start_delay", default="150.0",
@@ -56,7 +53,7 @@ class MyEffect(inkex.Effect):
                       help="Z axis print height in mm")
     self.OptionParser.add_option("--finished-height",
                       action="store", type="float",
-                      dest="finished_height", default="0.0",
+                      dest="finished_height", default="100.0",
                       help="Z axis height after printing in mm")
     self.OptionParser.add_option("--register-pen",
                       action="store", type="string",
@@ -84,6 +81,10 @@ class MyEffect(inkex.Effect):
     self.OptionParser.add_option("--tab",
                       action="store", type="string",
                       dest="tab")
+    self.OptionParser.add_option("--flat",
+                      action="store", type="float",
+                      dest="flat", default="0.15",
+                      help="Circle approximation quality")
 
   def output(self):
     self.context.generate()
@@ -91,14 +92,14 @@ class MyEffect(inkex.Effect):
   def effect(self):
     self.context = GCodeContext(self.options.xy_feedrate, self.options.z_feedrate, 
                            self.options.start_delay, self.options.stop_delay,
-                           self.options.pen_up_angle, self.options.pen_down_angle,
+                           self.options.pen_up_height, 
                            self.options.z_height, self.options.finished_height,
                            self.options.x_home, self.options.y_home,
                            self.options.register_pen,
                            self.options.num_copies,
                            self.options.continuous,
                            self.svg_file)
-    parser = SvgParser(self.document.getroot(), self.options.pause_on_layer_change)
+    parser = SvgParser(self.document.getroot(), self.options.pause_on_layer_change, self.options.flat)
     parser.parse()
     for entity in parser.entities:
       entity.get_gcode(self.context)
