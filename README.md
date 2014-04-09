@@ -47,9 +47,9 @@ Usage
 	* Save your file.
 * Preview
 	* For OS X, [Pleasant3D](http://www.pleasantsoftware.com/developer/pleasant3d/index.shtml) is great for this.
-	* For other operating systems... I don't know!
+	* For other [Repertier] (http://www.repetier.com/) is great.
 * Print!
-	* Open your `.gcode` file in [ReplicatorG](http://replicat.org/)
+	* Open your `.gcode` file in your preferred printer management software.
 	* Set up your printer and pen.
 	* Center your build platform.
 	* Start!
