@@ -4,7 +4,7 @@ RepRap G-Code Output Plugin for Inkscape
 This is an Inkscape extension that allows you to save your Inkscape drawings as
 G-Code files suitable for plotting with any RepRap printer. 
 
-Modified by Olafesq. Added Bezier curve smoothness parameter.
+Modified by Olafesq. Added Bezier curve smoothness parameter and other minor changes.
 
 
 Based on Unicorn plug-in from:
@@ -24,7 +24,7 @@ Credits
 Install
 =======
 
-Copy the contents of `src/` to your Inkscape `extensions/` folder.
+Copy the CONTENT of `src_reprap/` to your Inkscape `extensions/` folder.
 
 Typical locations include:
 
@@ -47,9 +47,9 @@ Usage
 	* Save your file.
 * Preview
 	* For OS X, [Pleasant3D](http://www.pleasantsoftware.com/developer/pleasant3d/index.shtml) is great for this.
-	* For other [Repertier] (http://www.repetier.com/) is great.
+	* For other operating systems... I don't know!
 * Print!
-	* Open your `.gcode` file in your preferred printer management software.
+	* Open your `.gcode` file in [ReplicatorG](http://replicat.org/)
 	* Set up your printer and pen.
 	* Center your build platform.
 	* Start!
@@ -60,4 +60,3 @@ TODOs
 * Rename `*PolyLine` stuff to `*Path` to be less misleading.
 * Formalize "home" to be a reasonable place to change pages/pens.
 * Use native curve G-Codes instead of converting to paths?
-
