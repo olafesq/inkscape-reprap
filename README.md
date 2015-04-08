@@ -24,7 +24,7 @@ Credits
 Install
 =======
 
-Copy the CONTENT of `src_reprap/` to your Inkscape `extensions/` folder.
+Copy the CONTENT of `src/` to your Inkscape `extensions/` folder.
 
 Typical locations include:
 
